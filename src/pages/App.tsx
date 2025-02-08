@@ -90,10 +90,10 @@ function Board({xIsNext, squares, handlePlay, handleEnd}: {
         handlePlay(nextSquares);
     }
 
-    const winner = calculateWinner(squares);
+    const {winner,line} = calculateWinner(squares);
     let status;
     if (winner) {
-        status = 'Winner: ' + winner.winner;
+        status = 'Winner: ' + winner;
     } else if (squares.every(square => square !== null)) {
         status = 'It\'s a draw!';
     } else {
@@ -105,7 +105,7 @@ function Board({xIsNext, squares, handlePlay, handleEnd}: {
                 key={i}
                 value={squares[i]}
                 onSquareClick={() => handleClick(i)}
-                highlight={winner.line.includes(i)} // 判断该方块是否在获胜方块中
+                highlight={line.includes(i)} // 判断该方块是否在获胜方块中
             />
         );
     };
